@@ -1,0 +1,16 @@
+.banner {
+  height: 100px;
+  color: black;
+}
+.pos-fixed {
+  position: fixed;
+  right: 0px;
+  bottom: 20%;
+}
+.footer {
+  height: 60px;
+  color: white;
+}
+.input-field {
+  width: 50%
+}

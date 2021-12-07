@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import './vendors/bootstrap/bootstrap-5.1.1-dist/css/bootstrap.css';
+import './vendors/bootstrap/bootstrap-5.1.1-dist/css/cyborg.bootstrap.min.css'
+import './vendors/fontawesome/fontawesome-free-5.15.4-web/css/all.css';
 import './App.css';
+import './MovieReview.css';
+
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import HomeScreen from "./components/HomeScreen";
+import LoginScreen from "./components/LoginScreen";
+import ProfileScreen from "./components/ProfileScreen";
+import RegisterScreen from "./components/RegisterScreen";
+import Alert from "./components/Alert";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<HomeScreen/>}/>
+            <Route path="/login" element={<LoginScreen/>}/>
+            <Route path="/register" element={<RegisterScreen/>}/>
+            <Route path="/profile" element={<ProfileScreen/>}/>
+            <Route path="/error" element={<Alert/>}/>
+          </Routes>
+        </div>
+      </BrowserRouter>
   );
 }
 
