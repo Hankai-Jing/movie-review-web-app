@@ -3,7 +3,7 @@ import Alert from "../Alert";
 import {API_URL} from "../../consts";
 import {callCreateMovie} from "../../services/movieService"
 
-const MovieList = (isModerator) => {
+const MovieList = (props) => {
   const [movieList, setMovieList] = useState();
   const [movie, setMovie] = useState('');
 
@@ -50,6 +50,7 @@ const MovieList = (isModerator) => {
         </li>
     )
   }
+
   if (!movieList) {
     return <></>
   }
@@ -65,7 +66,9 @@ const MovieList = (isModerator) => {
           {
             movieList.map((movie, idx) => {
               return (
-                  <li className="list-group-item" key={idx} >
+                  <li className="list-group-item list-group-item-action"
+                      key={idx}
+                      onClick={() => props.movieDetailHandler(movie.imdbid, movie.name)}>
                     {movie.name}
                     <span>  {movie.year}</span>
                     <span><img src={movie.poster} /></span>
@@ -73,7 +76,7 @@ const MovieList = (isModerator) => {
               );
             })
           }
-          {isModerator && renderCreateMovie()}
+          {props.isModerator && renderCreateMovie()}
         </ul>
       </>
   );

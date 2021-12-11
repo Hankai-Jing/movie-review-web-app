@@ -25,3 +25,15 @@ export const callCreateMovie = (movie) =>
         'content-type': 'application/json'
       }
     }).then(response => response.json());
+
+export const callCreateReview = (review) => {
+  console.log(review);
+  fetch(`${API_URL}/reviews`, {
+    method: 'POST',
+    body: review,
+    credentials: 'include',
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(response => response.json());
+}

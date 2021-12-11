@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from "react";
 import NavigationSidebar from "../NavigationSidebar/index";
 import Banner from "../Banner/index";
 import Footer from "../Footer/index";
 import MovieList from "../MovieList";
 import ReviewList from "../ReviewList";
+import MovieDetail from "../MovieDetail";
 
 const HomeScreen = () => {
+
+  let [isDetail, setIsDetail] = useState(false);
+  let [imdbId, setImdbId] = useState();
+  let [movieName, setMovieName] = useState();
+
+  const backHandler = () => {
+    setIsDetail(isDetail => !isDetail);
+  };
+
+  const movieDetailHandler = (id, name) => {
+    setImdbId(id);
+    setMovieName(name);
+    setIsDetail(isDetail => !isDetail);
+  };
+
   return(
       <div>
         <Banner/>
@@ -15,8 +31,22 @@ const HomeScreen = () => {
           </div>
 
           <div className="col-10 col-md-10" style={{"position": "relative"}}>
-            <MovieList isModerator={true}/>
-            <ReviewList username={"bob"}/>
+            {isDetail?
+                <><MovieDetail
+                    imdbId = {imdbId}
+                    backHandler = {backHandler}/>
+                  <br/>
+                <ReviewList
+                    username={"bob"}
+                    movieName = {movieName}
+                    isDetail = {isDetail}
+                    imdbId={imdbId}/></>
+                :
+                (<><MovieList
+                    movieDetailHandler = {movieDetailHandler}
+                    isModerator={true}/>
+                <ReviewList username={"bob"}/></>)
+            }
           </div>
 
         </div>
