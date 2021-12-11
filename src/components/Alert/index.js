@@ -6,7 +6,7 @@ const Alert = () => {
       <div className="alert alert-dismissible alert-danger">
         <button type="button" className="btn-close"
                 data-bs-dismiss="alert"></button>
-        <strong>Oh snap! Username or password does not match!</strong>
+        <strong>Oh snap! Something went wrong!</strong>
       </div>
 
   )

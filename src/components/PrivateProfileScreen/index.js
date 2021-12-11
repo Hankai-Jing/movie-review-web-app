@@ -2,10 +2,10 @@ import React from 'react';
 import NavigationSidebar from "../NavigationSidebar/index";
 import Banner from "../Banner/index";
 import Footer from "../Footer/index";
-import MovieList from "../MovieList";
-import ReviewList from "../ReviewList";
+import PrivateProfile from "../PrivateProfile/index";
 
-const HomeScreen = () => {
+const PrivateProfileScreen = () => {
+  console.log("private");
   return(
       <div>
         <Banner/>
@@ -15,8 +15,7 @@ const HomeScreen = () => {
           </div>
 
           <div className="col-10 col-md-10" style={{"position": "relative"}}>
-            <MovieList isModerator={true}/>
-            <ReviewList username={"bob"}/>
+            <PrivateProfile/>
           </div>
 
         </div>
@@ -25,4 +24,4 @@ const HomeScreen = () => {
 
   );
 }
-export default HomeScreen;
+export default PrivateProfileScreen;

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {API_URL} from "../../consts";
 import {useNavigate} from "react-router-dom";
 
-const Profile = () => {
+const PrivateProfile = () => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
 
@@ -99,4 +99,4 @@ const Profile = () => {
       </div>
   );
 };
-export default Profile;
+export default PrivateProfile;
