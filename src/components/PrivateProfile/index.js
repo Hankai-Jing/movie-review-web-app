@@ -16,6 +16,20 @@ const PrivateProfile = () => {
     }).catch(e => navigate('/login'));
   }
 
+  const editProfile = () => {
+    fetch(`${API_URL}/profile`, {
+      method: 'PUT',
+      credentials: 'include',
+      body: JSON.stringify(user),
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(user => {
+      setUser(user);
+    }).catch(e => navigate('/login'));
+  }
+
   const logout = () => {
     fetch(`${API_URL}/logout`, {
       method: 'POST',
@@ -27,22 +41,26 @@ const PrivateProfile = () => {
 
   return(
       <div>
-        <h1>Profile</h1>
+        <h1>PrivateProfile</h1>
+        <div className="col-2">
+            <button className="btn btn-dark wd-border-radius-20px" onClick={editProfile}>Save</button>
+        </div>
         <div className="form-group row">
-          <label htmlFor="staticEmail"
+          <label htmlFor="staticUsername"
                  className="col-sm-2 col-form-label">Username</label>
           <div className="col-sm-10">
             <input type="text" readOnly="" className="form-control-plaintext"
-                   id="staticEmail" value={user.username}/>
+                   id="staticUsername" value={user.username}/>
           </div>
         </div>
 
         <div className="form-group row">
-          <label htmlFor="staticEmail"
+          <label htmlFor="staticPassword"
                  className="col-sm-2 col-form-label">Password</label>
           <div className="col-sm-10">
-            <input type="text" readOnly="" className="form-control-plaintext"
-                   id="staticEmail" value={user.password}/>
+            <input type="text" className="form-control-plaintext"
+                   id="staticPassword" value={user.password}
+                   onChange={(e) => setUser({...user, password: e.target.value})}/>
           </div>
         </div>
 
@@ -50,44 +68,47 @@ const PrivateProfile = () => {
           <label htmlFor="staticEmail"
                  className="col-sm-2 col-form-label">Email</label>
           <div className="col-sm-10">
-            <input type="text" readOnly="" className="form-control-plaintext"
-                   id="staticEmail" value={user.email}/>
+            <input type="text" className="form-control-plaintext"
+                   id="staticEmail" value={user.email}
+                   onChange={(e) => setUser({...user, email: e.target.value})}/>
           </div>
         </div>
 
         <div className="form-group row">
-          <label htmlFor="staticEmail"
+          <label htmlFor="staticJoinedDate"
                  className="col-sm-2 col-form-label">Joined Date</label>
           <div className="col-sm-10">
             <input type="text" readOnly="" className="form-control-plaintext"
-                   id="staticEmail" value={user.joinedDate}/>
+                   id="staticJoinedDate" value={user.joinedDate}/>
           </div>
         </div>
 
         <div className="form-group row">
-          <label htmlFor="staticEmail"
+          <label htmlFor="staticFirstname"
                  className="col-sm-2 col-form-label">Firstname</label>
           <div className="col-sm-10">
-            <input type="text" readOnly="" className="form-control-plaintext"
-                   id="staticEmail" value={user.firstname}/>
+            <input type="text" className="form-control-plaintext"
+                   id="staticFirstname" value={user.firstname}
+                   onChange={(e) => setUser({...user, firstname: e.target.value})}/>
           </div>
         </div>
 
         <div className="form-group row">
-          <label htmlFor="staticEmail"
+          <label htmlFor="staticLastname"
                  className="col-sm-2 col-form-label">Lastname</label>
           <div className="col-sm-10">
-            <input type="text" readOnly="" className="form-control-plaintext"
-                   id="staticEmail" value={user.lastname}/>
+            <input type="text" className="form-control-plaintext"
+                   id="staticLastname" value={user.lastname}
+                   onChange={(e) => setUser({...user, lastname: e.target.value})}/>
           </div>
         </div>
 
         <div className="form-group row">
-          <label htmlFor="staticEmail"
+          <label htmlFor="staticRole"
                  className="col-sm-2 col-form-label">Role</label>
           <div className="col-sm-10">
             <input type="text" readOnly="" className="form-control-plaintext"
-                   id="staticEmail" value={user.role}/>
+                   id="staticRole" value={user.role}/>
           </div>
         </div>
 
