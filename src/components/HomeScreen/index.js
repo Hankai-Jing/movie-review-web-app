@@ -16,6 +16,21 @@ const HomeScreen = () => {
   let [imdbId, setImdbId] = useState();
   let [movieName, setMovieName] = useState();
   const [movieList, setMovieList] = useState([]);
+  const [userRole, setUserRole] = useState('');
+
+  useEffect(() => {
+    fetch(`${API_URL}/profile`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then((user) => {
+      setUserRole(user.role);
+    }).catch(e => <Alert/>);
+  }, []);
 
   const backHandler = () => {
     navigate(`/`);
@@ -43,8 +58,8 @@ const HomeScreen = () => {
     }).catch(e => <Alert/>);
   }, []);
 
-  const renderHomePageContent = (user) => {
-    switch (user) {
+  const renderHomePageContent = (userRole) => {
+    switch (userRole) {
       case 'admin':
         return (
             <ReviewList
@@ -62,7 +77,7 @@ const HomeScreen = () => {
                   isModerator={true}/>
             </>
         );
-      case 'log in user':
+      case 'user':
         return(
             <>
               <li className="list-group-item">
@@ -117,7 +132,7 @@ const HomeScreen = () => {
                     isDetail = {isDetail}
                     imdbId={imdbId}/></>
                 :
-                renderHomePageContent('admin')
+                renderHomePageContent(userRole)
             }
           </div>
 
