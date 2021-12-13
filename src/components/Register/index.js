@@ -51,7 +51,6 @@ const Register = () => {
             <label className="form-check-label">
               <input type="radio" className="form-check-input"
                      name="optionsRadios" id="optionsRadios1" value="option1"
-                     checked=""
                      onChange={(e) => setUser({...user, role: "user"})}/>
                 User
             </label>
