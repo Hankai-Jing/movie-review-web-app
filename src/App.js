@@ -14,19 +14,21 @@ import PrivateProfile from "./components/PrivateProfile";
 import ProfileScreen from "./components/ProfileScreen";
 import RegisterScreen from "./components/RegisterScreen";
 import Alert from "./components/Alert";
+import SearchScreen from "./components/SearchScreen";
 
 function App() {
   return (
       <BrowserRouter>
         <div className="container">
           <Routes>
-            <Route path="/" element={<HomeScreen/>}/>
+            <Route path="/*" element={<HomeScreen/>}/>
             <Route path="/login" element={<LoginScreen/>}/>
             <Route path="/register" element={<RegisterScreen/>}/>
             <Route path="/profile" element={<ProfileScreen/>}>
               <Route path=":username" element={<PublicProfile/>}/>
               <Route path="" element={<PrivateProfile/>}/>
             </Route>
+            <Route path="/search" element={<SearchScreen/>}/>
 
             <Route path="/error" element={<Alert/>}/>
           </Routes>

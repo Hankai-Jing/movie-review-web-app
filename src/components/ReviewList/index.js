@@ -1,16 +1,28 @@
 import React, {useEffect, useState} from "react";
 import Alert from "../Alert";
 import {API_URL} from "../../consts";
-import {callCreateReview} from "../../services/movieService";
+import {callCreateReview, callDeleteReview} from "../../services/reviewService";
 
 const ReviewList = (props) => {
 
-  const [reviewList, setReviewList] = useState();
+  const [reviewList, setReviewList] = useState([]);
   const [review, setReview] = useState('');
 
   useEffect(() => {
     if (props.isDetail) {
       fetch(`${API_URL}/reviews/${props.imdbId}`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        setReviewList(data);
+      }).catch(e => <Alert/>);
+    } else if (props.isAdmin) {
+      fetch(`${API_URL}/reviews/all`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -47,19 +59,42 @@ const ReviewList = (props) => {
       imdbid: props.imdbId,
       movieName: props.movieName,
     }))
-    .then(actualReview =>
-        setReviewList([
-          actualReview, ...reviewList
-        ]));
+    .then(actualReview => {
+      setReviewList([
+        actualReview, ...reviewList
+      ])
+    });
+    setReview('');
   };
+
+  const deleteReview = (reviewId) => {
+    callDeleteReview(reviewId)
+    .then( () =>
+        setReviewList(reviewList.filter(review => review._id != reviewId))
+    )
+  }
+
+  const renderDeleteButton = (reviewId) => {
+    return (
+        <>
+          <span className="px-3">
+            <button
+                onClick={() => deleteReview(reviewId)}
+                className="btn btn-danger float-end">
+              Delete
+            </button>
+          </span>
+        </>
+    )
+  }
 
   const renderCreateReview = () =>{
     return (
         <li className="list-group-item d-flex justify-content-between">
           <div class="w-100">
             <input
+                value={review}
                 onChange={updateReview}
-                defaultValue={review.title}
                 className="form-control"/>
           </div>
           <span class="px-3">
@@ -77,7 +112,10 @@ const ReviewList = (props) => {
     if (props.isDetail) {
       return `Reviews for ${props.movieName}`;
     }
-    return 'My Reviews'
+    if (props.isAdmin) {
+      return 'All Reviews';
+    }
+    return 'My Reviews';
   };
 
 
@@ -103,6 +141,8 @@ const ReviewList = (props) => {
                     {review.movieName}
                     <br/>
                     <div>{review.review}</div>
+                    {props.isAdmin &&
+                    renderDeleteButton(review._id)}
                   </li>
               );
             })

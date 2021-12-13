@@ -4,22 +4,12 @@ import {API_URL} from "../../consts";
 import {callCreateMovie} from "../../services/movieService"
 
 const MovieList = (props) => {
-  const [movieList, setMovieList] = useState();
+  const [movieList, setMovieList] = useState([]);
   const [movie, setMovie] = useState('');
 
   useEffect(() => {
-    fetch(`${API_URL}/movies`, {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      setMovieList(data);
-    }).catch(e => <Alert/>);
-  }, []);
+    setMovieList(props.movieList);
+  }, [props.movieList]);
 
   const updateMovie = (event) =>
       setMovie(event.target.value);
@@ -38,15 +28,16 @@ const MovieList = (props) => {
             <input
                 onChange={updateMovie}
                 defaultValue={movie.title}
+                placeholder="Enter movie name, e.g. Inception"
                 className="form-control"/>
           </div>
           <span class="px-3">
-          <button
-              onClick={createMovie}
-              className="btn btn-success float-end">
-            Create
-          </button>
-</span>
+            <button
+                onClick={createMovie}
+                className="btn btn-success float-end text-nowrap">
+              Add Movie
+            </button>
+          </span>
         </li>
     )
   }
@@ -58,11 +49,6 @@ const MovieList = (props) => {
   return (
       <>
         <ul className="list-group">
-          {
-            <li className="list-group-item">
-              <h5 className="fw-bolder">movie</h5>
-            </li>
-          }
           {
             movieList.map((movie, idx) => {
               return (

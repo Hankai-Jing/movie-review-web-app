@@ -26,14 +26,13 @@ export const callCreateMovie = (movie) =>
       }
     }).then(response => response.json());
 
-export const callCreateReview = (review) => {
-  console.log(review);
-  fetch(`${API_URL}/reviews`, {
-    method: 'POST',
-    body: review,
-    credentials: 'include',
-    headers: {
-      'content-type': 'application/json'
-    }
-  }).then(response => response.json());
-}
+export const callSearchMovies = (actor) =>
+    fetch(`${API_URL}/movies/?actor=${actor}`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .catch(e => <Alert/>);
