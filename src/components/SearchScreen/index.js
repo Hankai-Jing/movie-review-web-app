@@ -19,6 +19,22 @@ const SearchScreen = () => {
   let [isDetail, setIsDetail] = useState(false);
   let [imdbId, setImdbId] = useState();
   let [movieName, setMovieName] = useState();
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    fetch(`${API_URL}/profile`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then((user) => {
+      setUser(user);
+    }).catch(e => <Alert/>);
+  }, []);
+
   const backHandler = () => {
     setIsDetail(isDetail => !isDetail);
   };
@@ -80,7 +96,8 @@ const SearchScreen = () => {
                     backHandler = {backHandler}/>
                   <br/>
                   <ReviewList
-                      username={"bob"}
+                      isAdmin={false}
+                      username={user.username}
                       movieName = {movieName}
                       isDetail = {isDetail}
                       imdbId={imdbId}/></>

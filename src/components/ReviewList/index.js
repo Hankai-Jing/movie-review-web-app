@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Alert from "../Alert";
 import {API_URL} from "../../consts";
 import {callCreateReview, callDeleteReview} from "../../services/reviewService";
+import {NavLink} from "react-router-dom";
 
 const ReviewList = (props) => {
 
@@ -143,6 +144,15 @@ const ReviewList = (props) => {
                     <div>{review.review}</div>
                     {props.isAdmin &&
                     renderDeleteButton(review._id)}
+                    <br/>
+                    <div className="float-end mr-100">
+                      - <NavLink className="mr-auto link-success"
+                                 exact
+                                 activeStyle={{ color: 'red' }}
+                                 to={`/profile/${review.reviewerUsername}`}>
+                      {review.reviewerUsername}
+                    </NavLink>
+                    </div>
                   </li>
               );
             })

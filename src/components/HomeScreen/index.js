@@ -16,7 +16,7 @@ const HomeScreen = () => {
   let [imdbId, setImdbId] = useState();
   let [movieName, setMovieName] = useState();
   const [movieList, setMovieList] = useState([]);
-  const [userRole, setUserRole] = useState('');
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     fetch(`${API_URL}/profile`, {
@@ -28,7 +28,7 @@ const HomeScreen = () => {
     })
     .then((response) => response.json())
     .then((user) => {
-      setUserRole(user.role);
+      setUser(user);
     }).catch(e => <Alert/>);
   }, []);
 
@@ -64,7 +64,7 @@ const HomeScreen = () => {
         return (
             <ReviewList
                 isAdmin={true}
-                username={"bob"}/>);
+                username={user.username}/>);
       case 'moderator':
         return (
             <>
@@ -90,7 +90,7 @@ const HomeScreen = () => {
               <br/>
               <ReviewList
                   isAdmin={false}
-                  username={"bob"}/>
+                  username={user.username}/>
             </>
         );
       default:
@@ -127,12 +127,12 @@ const HomeScreen = () => {
                     backHandler = {backHandler}/>
                   <br/>
                 <ReviewList
-                    username={"bob"}
+                    username={user.username}
                     movieName = {movieName}
                     isDetail = {isDetail}
                     imdbId={imdbId}/></>
                 :
-                renderHomePageContent(userRole)
+                renderHomePageContent(user.role)
             }
           </div>
 
