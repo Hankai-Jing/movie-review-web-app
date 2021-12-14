@@ -1,6 +1,7 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {API_URL} from "../../consts";
 import {useNavigate} from "react-router-dom";
+import PersonalReviewList from "../PersonalReviewList";
 
 const PrivateProfile = () => {
   const [user, setUser] = useState({});
@@ -40,8 +41,9 @@ const PrivateProfile = () => {
   useEffect(getProfile, [navigate]);
 
   return(
-      <div>
-        <h1>PrivateProfile</h1>
+      <>
+      <div className="mb-4">
+        <h3>PrivateProfile</h3>
         <div className="col-2">
             <button className="btn btn-dark wd-border-radius-20px" onClick={editProfile}>Save</button>
         </div>
@@ -118,6 +120,9 @@ const PrivateProfile = () => {
           Logout
         </button>
       </div>
+
+      {/*<PersonalReviewList username={user.username}/>*/}
+      </>
   );
 };
 export default PrivateProfile;

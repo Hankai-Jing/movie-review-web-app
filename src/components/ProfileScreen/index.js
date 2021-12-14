@@ -2,7 +2,6 @@ import React from 'react';
 import NavigationSidebar from "../NavigationSidebar/index";
 import Banner from "../Banner/index";
 import Footer from "../Footer/index";
-import PrivateProfile from "../PrivateProfile/index";
 import {Outlet} from "react-router-dom";
 
 const ProfileScreen = () => {

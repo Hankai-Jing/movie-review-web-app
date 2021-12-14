@@ -7,8 +7,6 @@ import './MovieReview.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import HomeScreen from "./components/HomeScreen";
 import LoginScreen from "./components/LoginScreen";
-import PrivateProfileScreen from "./components/PrivateProfileScreen";
-import PublicProfileScreen from "./components/PublicProfileScreen";
 import PublicProfile from "./components/PublicProfile";
 import PrivateProfile from "./components/PrivateProfile";
 import ProfileScreen from "./components/ProfileScreen";

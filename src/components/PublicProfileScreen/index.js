@@ -3,13 +3,9 @@ import NavigationSidebar from "../NavigationSidebar/index";
 import Banner from "../Banner/index";
 import Footer from "../Footer/index";
 import PublicProfile from "../PrivateProfile/index";
-import {useParams} from "react-router-dom";
-import PrivateProfile from "../PrivateProfile/index";
 
 const PublicProfileScreen = () => {
-  const params = useParams();
 
-  console.log("public");
   return(
       <div>
         <Banner/>
@@ -19,7 +15,6 @@ const PublicProfileScreen = () => {
           </div>
 
           <div className="col-10 col-md-10" style={{"position": "relative"}}>
-            {/*{params.username? <PublicProfile/> : <PrivateProfile/>}*/}
             <PublicProfile/>
           </div>
 
