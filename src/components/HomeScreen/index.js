@@ -64,7 +64,7 @@ const HomeScreen = () => {
         return (
             <ReviewList
                 isAdmin={true}
-                username={user.username}/>);
+                user={user}/>);
       case 'moderator':
         return (
             <>
@@ -90,7 +90,7 @@ const HomeScreen = () => {
               <br/>
               <ReviewList
                   isAdmin={false}
-                  username={user.username}/>
+                  user={user}/>
             </>
         );
       default:
@@ -127,7 +127,7 @@ const HomeScreen = () => {
                     backHandler = {backHandler}/>
                   <br/>
                 <ReviewList
-                    username={user.username}
+                    user={user}
                     movieName = {movieName}
                     isDetail = {isDetail}
                     imdbId={imdbId}/></>

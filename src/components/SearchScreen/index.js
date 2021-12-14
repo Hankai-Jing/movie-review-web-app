@@ -97,7 +97,7 @@ const SearchScreen = () => {
                   <br/>
                   <ReviewList
                       isAdmin={false}
-                      username={user.username}
+                      user={user}
                       movieName = {movieName}
                       isDetail = {isDetail}
                       imdbId={imdbId}/></>

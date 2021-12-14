@@ -35,7 +35,7 @@ const ReviewList = (props) => {
         setReviewList(data);
       }).catch(e => <Alert/>);
     } else {
-      fetch(`${API_URL}/reviews/?username=${props.username}`, {
+      fetch(`${API_URL}/reviews/?username=${props.user.username}`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -55,7 +55,7 @@ const ReviewList = (props) => {
 
   const createReview = () => {
     callCreateReview(JSON.stringify({
-      reviewerUsername: props.username,
+      reviewerUsername: props.user.username,
       review: review,
       imdbid: props.imdbId,
       movieName: props.movieName,
@@ -134,7 +134,7 @@ const ReviewList = (props) => {
               </h5>
             </li>
           }
-          {renderCreateReview()}
+          {props.user.role && renderCreateReview()}
           {reviewList &&
             reviewList.map((review, idx) => {
               return (
