@@ -87,7 +87,7 @@ const SearchScreen = () => {
         <Banner/>
         <div className="row mt-2">
           <div className="col-2 col-md-2">
-            <NavigationSidebar active="home"/>
+            <NavigationSidebar active="search"/>
           </div>
           <div className="col-10 col-md-10" style={{"position": "relative"}}>
             {isDetail?

@@ -13,6 +13,7 @@ import ProfileScreen from "./components/ProfileScreen";
 import RegisterScreen from "./components/RegisterScreen";
 import Alert from "./components/Alert";
 import SearchScreen from "./components/SearchScreen";
+import PrivacyScreen from "./components/PrivacyPolicy"
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="" element={<PrivateProfile/>}/>
             </Route>
             <Route path="/search" element={<SearchScreen/>}/>
+            <Route path="/privacy" element={<PrivacyScreen/>}/>
 
             <Route path="/error" element={<Alert/>}/>
           </Routes>

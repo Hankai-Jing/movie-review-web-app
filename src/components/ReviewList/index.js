@@ -147,6 +147,7 @@ const ReviewList = (props) => {
                     <br/>
                     <div className="float-end mr-100">
                       - <NavLink className="mr-auto link-success"
+                                 style={{textDecoration: 'none'}}
                                  exact
                                  activeStyle={{ color: 'red' }}
                                  to={`/profile/${review.reviewerUsername}`}>
