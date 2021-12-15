@@ -75,7 +75,7 @@ const SearchScreen = () => {
           <span class="px-3">
             <button
                 onClick={searchMovie}
-                className="btn btn-success float-end text-nowrap">
+                className="btn btn-primary float-end text-nowrap">
               Search
             </button>
           </span>

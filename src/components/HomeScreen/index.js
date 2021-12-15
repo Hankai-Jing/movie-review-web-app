@@ -69,7 +69,7 @@ const HomeScreen = () => {
         return (
             <>
               <li className="list-group-item">
-                <h5 className="fw-bolder">movie</h5>
+                <h5 className="fw-bolder">Movie</h5>
               </li>
               <MovieList
                   movieList = {movieList}
@@ -81,7 +81,7 @@ const HomeScreen = () => {
         return(
             <>
               <li className="list-group-item">
-                <h5 className="fw-bolder">movie</h5>
+                <h5 className="fw-bolder">Movie</h5>
               </li>
               <MovieList
                   movieList = {movieList}
@@ -97,7 +97,7 @@ const HomeScreen = () => {
         return(
             <>
               <li className="list-group-item">
-                <h5 className="fw-bolder">movie</h5>
+                <h5 className="fw-bolder">Movie</h5>
               </li>
               <MovieList
                   movieList = {movieList}

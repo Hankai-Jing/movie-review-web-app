@@ -34,7 +34,7 @@ const MovieList = (props) => {
           <span class="px-3">
             <button
                 onClick={createMovie}
-                className="btn btn-success float-end text-nowrap">
+                className="btn btn-primary float-end text-nowrap">
               Add Movie
             </button>
           </span>
@@ -55,9 +55,11 @@ const MovieList = (props) => {
                   <li className="list-group-item list-group-item-action"
                       key={idx}
                       onClick={() => props.movieDetailHandler(movie.imdbid, movie.name)}>
-                    {movie.name}
+
+                    <span><img style={{width: "100px"}} src={movie.poster} /></span>
+
+                    <b>   {movie.name}</b>
                     <span>  {movie.year}</span>
-                    <span><img src={movie.poster} /></span>
                   </li>
               );
             })

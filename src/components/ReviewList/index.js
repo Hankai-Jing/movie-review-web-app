@@ -101,7 +101,7 @@ const ReviewList = (props) => {
           <span class="px-3">
           <button
               onClick={createReview}
-              className="btn btn-success float-end">
+              className="btn btn-primary float-end">
             Create
           </button>
 </span>
