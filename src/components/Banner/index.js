@@ -3,7 +3,7 @@ import "../../MovieReview.css";
 
 const Banner = () => {
   return(
-      <div className="bg-secondary bg-gradient banner text-center fs-1 ">
+      <div className="bg-info bg-gradient banner text-center text-white fs-1 ">
         Rotten Potatoes
       </div>
   )
